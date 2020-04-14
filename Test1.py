@@ -47,7 +47,7 @@ class MainTests(unittest.TestCase):
 
             driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
             driver.get('http://automationpractice.com/index.php')
-            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("robert@wp.pl")
+            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("Krzysztof@wp.pl")
             driver.find_element(By.XPATH, "//button[@class = 'btn btn-default button button-small']").click()
             title = driver.find_element(By.XPATH, "//p[@class = 'alert alert-success']").text
             assert 'Newsletter : You have successfully subscribed to this newsletter.' == title
