@@ -7,8 +7,13 @@ from selenium.webdriver.common.by import By
 
 class MainTests(unittest.TestCase):
 
+    def setUp(self):
+        self.driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
+
+
+
     def test_demo_konto(self):
-        driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
+        driver = self.driver
         driver.get('http://automationpractice.com/index.php')
         driver.find_element(By.XPATH, "//a[@class = 'login']").click()
         sleep(1)
@@ -19,7 +24,7 @@ class MainTests(unittest.TestCase):
         title = driver.find_element(By.XPATH, "//a[@class = 'account']").text
         assert 'Adrian Nowak' == title
         print(title)
-        driver.quit()
+
 
     def test_demo_zakupy(self):
         driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
@@ -36,23 +41,24 @@ class MainTests(unittest.TestCase):
         driver.find_element(By.XPATH, "//button[@id = 'SubmitLogin']").click()
         driver.find_element(By.XPATH, "//button[@class = 'button btn btn-default button-medium']").click()
         driver.find_element(By.XPATH, "//input[@id = 'cgv']").click()
-        driver.find_element(By.XPATH,
-                            "//button[@class = 'button btn btn-default standard-checkout button-medium']").click()
+        driver.find_element(By.XPATH, "//button[@class = 'button btn btn-default standard-checkout button-medium']").click()
         driver.find_element(By.XPATH, "//a[@class = 'cheque']").click()
         driver.find_element(By.XPATH, "//button[@type = 'submit']").click()
         driver.find_element(By.XPATH, "//a[@title = 'My Store']").click()
-        driver.quit()
+
 
     def test_demo_newsletter(self):
 
             driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
             driver.get('http://automationpractice.com/index.php')
-            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("Krzysztof@wp.pl")
+            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("Tomeks@wp.pl")
             driver.find_element(By.XPATH, "//button[@class = 'btn btn-default button button-small']").click()
             title = driver.find_element(By.XPATH, "//p[@class = 'alert alert-success']").text
             assert 'Newsletter : You have successfully subscribed to this newsletter.' == title
-            driver.quit()
 
+
+    def tearDown(self):
+        self.driver.quit()
 
 
 
