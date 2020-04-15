@@ -25,6 +25,15 @@ class MainTests(unittest.TestCase):
         assert 'Adrian Nowak' == title
         print(title)
 
+    def test_demo_newsletter(self):
+
+            driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
+            driver.get('http://automationpractice.com/index.php')
+            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("Tomeks@wp.pl")
+            driver.find_element(By.XPATH, "//button[@class = 'btn btn-default button button-small']").click()
+            title = driver.find_element(By.XPATH, "//p[@class = 'alert alert-success']").text
+            assert 'Newsletter : You have successfully subscribed to this newsletter.' == title
+
 
     def test_demo_zakupy(self):
         driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
@@ -47,14 +56,6 @@ class MainTests(unittest.TestCase):
         driver.find_element(By.XPATH, "//a[@title = 'My Store']").click()
 
 
-    def test_demo_newsletter(self):
-
-            driver = webdriver.Chrome(executable_path=r"C:\chromedriver.exe")
-            driver.get('http://automationpractice.com/index.php')
-            driver.find_element(By.XPATH, "//input[@id = 'newsletter-input']").send_keys("Tomeks@wp.pl")
-            driver.find_element(By.XPATH, "//button[@class = 'btn btn-default button button-small']").click()
-            title = driver.find_element(By.XPATH, "//p[@class = 'alert alert-success']").text
-            assert 'Newsletter : You have successfully subscribed to this newsletter.' == title
 
 
     def tearDown(self):
